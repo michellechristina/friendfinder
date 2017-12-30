@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <title>Survey Page</title>
   <!-- Latest compiled and minified CSS & JS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
@@ -148,16 +148,7 @@
                 </select>
               </div>
 
-              <!-- <div class="form-group">
-                <label for="q1">Pizza Is The Best Food</label> 
-                <br>
-              <div class="btn-group" role="group" id="q1" aria-label="...">
-                <button type="button" value="1" class="btn btn-default">strongly disagree</button>
-                <button type="button" value="2" class="btn btn-default">kind of disagree</button>
-                <button type="button" value="3" class="btn btn-default">meh</button>
-                <button type="button" value="4" class="btn btn-default">kind of agree</button>
-                <button type="button" value="5" class="btn btn-default">strongly agree</button>
-              </div> -->
+
               <br>
               <hr>
 
@@ -176,6 +167,29 @@
       </div>
     </footer>
   </div>
+<!-- modal -->
+  <div class="modal" id="result" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Meet Your New BFF</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <h2 id="bffName"></h2>
+            <img id="bffImg" src="https://i.pinimg.com/736x/5f/16/29/5f16294450b32e4d0669d03f51e29002--funny-animal-pics-funny-animals.jpg" alt="">
+        
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 
 </html>
@@ -196,11 +210,11 @@
       friendname: $("#friendname").val().trim(),
       friendphoto: $("#friendphoto").val().trim(),
       scores: userScores.split(""),
-      // q1: $("#q1 option:selected").val(),
+    //   // q1: $("#q1 option:selected").val(),
     };
 
 
-    console.log("new friend: " + newFriend);
+    // console.log("new friend: " + newFriend);
     // This line is the magic. It"s very similar to the standard ajax function we used.
     // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
     // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
@@ -208,17 +222,24 @@
     $.post("/api/friends", newFriend,
       function (data) {
         // If a table is available... tell user they are booked.
-        if (data) {
-          alert("Yay! add a friend match here");
-        }
-        // If a table is available... tell user they on the waiting list.
-        else {
-          alert("Sorry you are on the wait list");
-        }
+
+             // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+             $("#bffName").text(data.name);
+        $('#bffImg').attr("src", data.photo);
+        // Show the modal with the best match 
+        $("#result").modal('toggle');
+      });
+
+    //  else {
+    //   alert("Missed something! Please fill out all questions");
+    // };
+      
         // Clear the form when submitting
         $("#friendname").val("");
         $("#friendphoto").val("");
         $("#q1").val("");
-      });
-  });
+
+      })
+    // });
+  // });
 </script>

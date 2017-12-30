@@ -24,8 +24,42 @@ module.exports = function(app) {
     // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
     // It will do this by sending out the value "true" have a table
     // req.body is available since we're using the body-parser middleware
-    friendsData.push(req.body);
-    res.end("change this later");
+  
+
+//your new best friends info
+    var bff = {
+      friendname: "",
+      friendphoto: "",
+      friendDifference: 1
+    };
+
+    // your survery results
+    var newFriend=req.body;
+    var userName= newFriend.name;
+    var userPhoto= newFriend.photo;
+    var userScores= newFriend.scores;
+
+    var totalDifference=0;
+
+    //iterate thru all friend data
+    for (let i = 0; i < friendsData.length; i++) {
+      totalDifference=0;
+
+      for (let b = 0; b < friendsData[i].scores[b]; b++) {
+        totalDifference +=math.abs(parseInt(userScores[j]) - parseInt(friendsData[i].scores[j]));
+        
+        if (totalDifference <= bff.friendDifference){
+          bff.name=friendsData[i].name;
+          bff.photo=friendsData[i].photo;
+          bff.friendDifference=totalDifference;
+        }
+      }
+      
+    }
+
+    friendsData.push(newFriend);
+    res.json(bff);
+
     // console.log("friendsdata: "+friendsData);
     // if (friendsData.length < 5) {
     //   friendsData.push(req.body);
