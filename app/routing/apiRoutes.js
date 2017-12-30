@@ -25,7 +25,8 @@ module.exports = function(app) {
     // It will do this by sending out the value "true" have a table
     // req.body is available since we're using the body-parser middleware
     friendsData.push(req.body);
-    console.log("friendsdata: "+friendsData);
+    res.end("change this later");
+    // console.log("friendsdata: "+friendsData);
     // if (friendsData.length < 5) {
     //   friendsData.push(req.body);
     //   res.json(true);
