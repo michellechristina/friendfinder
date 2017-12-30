@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Survey Page</title>
@@ -8,10 +9,12 @@
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
+
 <body>
   <div class="container">
     <div class="jumbotron">
-      <h1 class="text-center"><span class="glyphicon glyphicon-fire"></span> Friend Finder</h1>
+      <h1 class="text-center">
+        <span class="glyphicon glyphicon-fire"></span> Friend Finder</h1>
       <hr>
       <h2 class="text-center">Take The Survey</h2>
       <br>
@@ -36,8 +39,107 @@
 
 
               <div class="form-group">
-                <label for="q11">Pizza Is The Best Food</label>
+                <label for="q11">I think pizza is the best food ever</label>
                 <select class="form-control" id="q1">
+                  <option value="1">strongly disagree</option>
+                  <option value="2">kind of disagree</option>
+                  <option value="3">meh</option>
+                  <option value="4">kind of agree</option>
+                  <option value="5">strongly agree</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="q11">I dislike the color yellow</label>
+                <select class="form-control" id="q2">
+                  <option value="1">strongly disagree</option>
+                  <option value="2">kind of disagree</option>
+                  <option value="3">meh</option>
+                  <option value="4">kind of agree</option>
+                  <option value="5">strongly agree</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="q11">I prefer dogs over cats</label>
+                <select class="form-control" id="q3">
+                  <option value="1">strongly disagree</option>
+                  <option value="2">kind of disagree</option>
+                  <option value="3">meh</option>
+                  <option value="4">kind of agree</option>
+                  <option value="5">strongly agree</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="q11">I would describe myself as outdoorsy</label>
+                <select class="form-control" id="q4">
+                  <option value="1">strongly disagree</option>
+                  <option value="2">kind of disagree</option>
+                  <option value="3">meh</option>
+                  <option value="4">kind of agree</option>
+                  <option value="5">strongly agree</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="q11">I believe pomegranates are delicious, but not worth the effort</label>
+                <select class="form-control" id="q5">
+                  <option value="1">strongly disagree</option>
+                  <option value="2">kind of disagree</option>
+                  <option value="3">meh</option>
+                  <option value="4">kind of agree</option>
+                  <option value="5">strongly agree</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="q11">I believe in responsible hedonism</label>
+                <select class="form-control" id="q6">
+                  <option value="1">strongly disagree</option>
+                  <option value="2">kind of disagree</option>
+                  <option value="3">meh</option>
+                  <option value="4">kind of agree</option>
+                  <option value="5">strongly agree</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="q11">I think snow is the worst thing ever</label>
+                <select class="form-control" id="q7">
+                  <option value="1">strongly disagree</option>
+                  <option value="2">kind of disagree</option>
+                  <option value="3">meh</option>
+                  <option value="4">kind of agree</option>
+                  <option value="5">strongly agree</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="q11">I enjoy trying new stuff</label>
+                <select class="form-control" id="q8">
+                  <option value="1">strongly disagree</option>
+                  <option value="2">kind of disagree</option>
+                  <option value="3">meh</option>
+                  <option value="4">kind of agree</option>
+                  <option value="5">strongly agree</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="q11">If I had to choose a superpower, it would be the ability to fly</label>
+                <select class="form-control" id="q9">
+                  <option value="1">strongly disagree</option>
+                  <option value="2">kind of disagree</option>
+                  <option value="3">meh</option>
+                  <option value="4">kind of agree</option>
+                  <option value="5">strongly agree</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="q11">I prefer Star Trek over Star Wars</label>
+                <select class="form-control" id="q10">
                   <option value="1">strongly disagree</option>
                   <option value="2">kind of disagree</option>
                   <option value="3">meh</option>
@@ -56,9 +158,9 @@
                 <button type="button" value="4" class="btn btn-default">kind of agree</button>
                 <button type="button" value="5" class="btn btn-default">strongly agree</button>
               </div> -->
-<br>
-<hr>
-              
+              <br>
+              <hr>
+
               <button type="submit" class="btn btn-primary submit">Submit</button>
             </form>
           </div>
@@ -66,48 +168,57 @@
       </div>
     </div>
     <footer class="footer">
-        <div class="container">
-          <p><a href="/api/friends">API Friend List</a> | <a href="https://github.com/michellechristina/friendfinder">GitHub Repo</a></p>
-        </div>
-      </footer>
+      <div class="container">
+        <p>
+          <a href="/api/friends">API Friend List</a> |
+          <a href="https://github.com/michellechristina/friendfinder">GitHub Repo</a>
+        </p>
+      </div>
+    </footer>
   </div>
 </body>
+
 </html>
 <!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS SENT TO OUR SERVER -->
 <script type="text/javascript">
-    // In this code below we create the Front-end JavaScript which "POSTS" our form data to our express server.
-    // In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
-    // Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
-    // In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
-    $(".submit").on("click", function(event) {
-      event.preventDefault();
-      // Here we grab the form elements
-      var newFriend = {
-        friendname: $("#friendname").val().trim(),
-        friendphoto: $("#friendphoto").val().trim(),
-        // q1: $("#q1").val(),
-        q1: $("#q1 option:selected").val(),
+  // In this code below we create the Front-end JavaScript which "POSTS" our form data to our express server.
+  // In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
+  // Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
+  // In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
+  $(".submit").on("click", function (event) {
+    event.preventDefault();
+    // Here we grab the question responses
+    var userScores = $("#q1").val().toString() + $("#q2").val().toString() + $("#q3").val().toString() +
+      $("#q4").val().toString() + $("#q5").val().toString() + $("#q6").val().toString() + $("#q7").val()
+      .toString() + $("#q8").val().toString() + $("#q9").val().toString() + $("#q10").val().toString()
 
-      };
-      console.log("new friend: "+newFriend);
-      // This line is the magic. It"s very similar to the standard ajax function we used.
-      // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
-      // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
-      // depending on if a tables is available or not.
-      $.post("/api/friends", newFriend,
-        function(data) {
-          // If a table is available... tell user they are booked.
-          if (data) {
-            alert("Yay! add a friend match here");
-          }
-          // If a table is available... tell user they on the waiting list.
-          else {
-            alert("Sorry you are on the wait list");
-          }
-          // Clear the form when submitting
-          $("#friendname").val("");
-          $("#friendphoto").val("");
-          $("#q1").val("");
-        });
-    });
+    var newFriend = {
+      friendname: $("#friendname").val().trim(),
+      friendphoto: $("#friendphoto").val().trim(),
+      scores: userScores.split(""),
+      // q1: $("#q1 option:selected").val(),
+    };
+
+
+    console.log("new friend: " + newFriend);
+    // This line is the magic. It"s very similar to the standard ajax function we used.
+    // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
+    // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
+    // depending on if a tables is available or not.
+    $.post("/api/friends", newFriend,
+      function (data) {
+        // If a table is available... tell user they are booked.
+        if (data) {
+          alert("Yay! add a friend match here");
+        }
+        // If a table is available... tell user they on the waiting list.
+        else {
+          alert("Sorry you are on the wait list");
+        }
+        // Clear the form when submitting
+        $("#friendname").val("");
+        $("#friendphoto").val("");
+        $("#q1").val("");
+      });
+  });
 </script>
