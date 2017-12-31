@@ -5,9 +5,11 @@
   <meta charset="UTF-8">
   <title>Survey Page</title>
   <!-- Latest compiled and minified CSS & JS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+    crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -167,7 +169,7 @@
       </div>
     </footer>
   </div>
-<!-- modal -->
+  <!-- modal -->
   <div class="modal" id="result" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -178,9 +180,10 @@
           </button>
         </div>
         <div class="modal-body">
-            <h2 id="bffName"></h2>
-            <img id="bffImg" src="https://i.pinimg.com/736x/5f/16/29/5f16294450b32e4d0669d03f51e29002--funny-animal-pics-funny-animals.jpg" alt="">
-        
+          <h2 id="bffName"></h2>
+          <img id="bffImg" width="100%" src="https://i.pinimg.com/736x/5f/16/29/5f16294450b32e4d0669d03f51e29002--funny-animal-pics-funny-animals.jpg"
+            alt="">
+
 
         </div>
         <div class="modal-footer">
@@ -193,53 +196,40 @@
 </body>
 
 </html>
-<!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS SENT TO OUR SERVER -->
+
+
 <script type="text/javascript">
-  // In this code below we create the Front-end JavaScript which "POSTS" our form data to our express server.
-  // In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
-  // Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
-  // In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
   $(".submit").on("click", function (event) {
     event.preventDefault();
+    console.log("clicked the button");
     // Here we grab the question responses
     var userScores = $("#q1").val().toString() + $("#q2").val().toString() + $("#q3").val().toString() +
       $("#q4").val().toString() + $("#q5").val().toString() + $("#q6").val().toString() + $("#q7").val()
       .toString() + $("#q8").val().toString() + $("#q9").val().toString() + $("#q10").val().toString()
+    console.log(userScores);
 
     var newFriend = {
       friendname: $("#friendname").val().trim(),
       friendphoto: $("#friendphoto").val().trim(),
-      scores: userScores.split(""),
-    //   // q1: $("#q1 option:selected").val(),
+      scores: userScores,
+
     };
 
+    console.log(newFriend);
 
-    // console.log("new friend: " + newFriend);
-    // This line is the magic. It"s very similar to the standard ajax function we used.
-    // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
-    // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
-    // depending on if a tables is available or not.
-    $.post("/api/friends", newFriend,
-      function (data) {
-        // If a table is available... tell user they are booked.
+    $.ajax({
+      type: "POST",
+      url: "/api/friends",
+      data: newFriend,
+      success: function (data) {
 
-             // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-             $("#bffName").text(data.name);
-        $('#bffImg').attr("src", data.photo);
-        // Show the modal with the best match 
+        // Get the result from the AJAX post so that the best match's name and photo are displayed.
+        $("#bffName").text(data.friendname);
+        $('#bffImg').attr("src", data.friendphoto);
+        // Show the modal with the bff match
         $("#result").modal('toggle');
-      });
+      }
+    });
 
-    //  else {
-    //   alert("Missed something! Please fill out all questions");
-    // };
-      
-        // Clear the form when submitting
-        $("#friendname").val("");
-        $("#friendphoto").val("");
-        $("#q1").val("");
-
-      })
-    // });
-  // });
+  })
 </script>

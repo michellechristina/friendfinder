@@ -25,7 +25,8 @@ module.exports = function(app) {
     // It will do this by sending out the value "true" have a table
     // req.body is available since we're using the body-parser middleware
   
-
+console.log("api/friends works");
+console.log(req.body);
 //your new best friends info
     var bff = {
       friendname: "",
@@ -37,25 +38,42 @@ module.exports = function(app) {
     var newFriend=req.body;
     var userName= newFriend.name;
     var userPhoto= newFriend.photo;
-    var userScores= newFriend.scores;
+    var userScores= newFriend.scores.split("");
 
     var totalDifference=0;
 
+    console.log("newFriend");
+    console.log(JSON.stringify(newFriend,null,2));
     //iterate thru all friend data
     for (let i = 0; i < friendsData.length; i++) {
+      console.log("i: "+i);
       totalDifference=0;
 
       for (let b = 0; b < friendsData[i].scores[b]; b++) {
-        totalDifference +=math.abs(parseInt(userScores[j]) - parseInt(friendsData[i].scores[j]));
+        console.log("b: "+b);
+
+        console.log("userScores[b]");
+        console.log(userScores);
+        console.log("friendsData[i].scores[b]");
+        console.log(friendsData[i].scores[b]);
+        totalDifference +=Math.abs(parseInt(userScores[b]) - parseInt(friendsData[i].scores[b]));
         
+        console.log("totalDifference: "+totalDifference);
+        console.log("bff.friendDifference: "+bff.friendDifference);
         if (totalDifference <= bff.friendDifference){
-          bff.name=friendsData[i].name;
-          bff.photo=friendsData[i].photo;
+          console.log("friendsData: ");
+          console.log(friendsData[i]);
+          bff.friendname=friendsData[i].friendname;
+          bff.friendphoto=friendsData[i].friendphoto;
           bff.friendDifference=totalDifference;
+        
         }
+        else {console.log("you are here");}
       }
       
     }
+    console.log("bff");
+    console.log(bff);
 
     friendsData.push(newFriend);
     res.json(bff);
